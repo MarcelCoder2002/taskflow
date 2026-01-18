@@ -22,6 +22,7 @@
     "@trpc/server": "^11.8.1",
     "@zenstackhq/better-auth": "^3.2.1",
     "@zenstackhq/orm": "^3.2.1",
+    "@zenstackhq/plugin-policy": "^3.2.1",
     "better-auth": "^1.4.15",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

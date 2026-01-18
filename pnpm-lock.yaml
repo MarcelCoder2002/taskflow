@@ -38,6 +38,9 @@ importers:
       '@zenstackhq/orm':
         specifier: ^3.2.1
         version: 3.2.1(zod@4.3.5)
+      '@zenstackhq/plugin-policy':
+        specifier: ^3.2.1
+        version: 3.2.1(kysely@0.28.9)(zod@4.3.5)
       better-auth:
         specifier: ^1.4.15
         version: 1.4.15(next@16.1.3(@babel/core@7.28.6)(@playwright/test@1.57.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(prisma@6.19.2(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(vitest@4.0.17)
@@ -1406,6 +1409,11 @@ packages:
         optional: true
       sql.js:
         optional: true
+
+  '@zenstackhq/plugin-policy@3.2.1':
+    resolution: {integrity: sha512-wrosfNvz7Ila2n671MK6OmDrCK5CgtdMAF3/NP+Ft64cGOL914AyHmbZNxDh7/4+wwDqWugBJpUfaPhb+CuMLQ==}
+    peerDependencies:
+      kysely: ~0.28.8
 
   '@zenstackhq/schema@3.2.1':
     resolution: {integrity: sha512-ibNGeFX4EyKLxp0muBhQrGPyDmDggqdQFAKZZcyg9gbJv68Q+HgN+sbs0hMERp3ir43IzT9mVoWz45sqE+Z5yA==}
@@ -4727,6 +4735,18 @@ snapshots:
       uuid: 11.1.0
       zod: 4.3.5
       zod-validation-error: 4.0.2(zod@4.3.5)
+
+  '@zenstackhq/plugin-policy@3.2.1(kysely@0.28.9)(zod@4.3.5)':
+    dependencies:
+      '@zenstackhq/common-helpers': 3.2.1
+      '@zenstackhq/orm': 3.2.1(zod@4.3.5)
+      kysely: 0.28.9
+      ts-pattern: 5.9.0
+    transitivePeerDependencies:
+      - better-sqlite3
+      - pg
+      - sql.js
+      - zod
 
   '@zenstackhq/schema@3.2.1':
     dependencies:
