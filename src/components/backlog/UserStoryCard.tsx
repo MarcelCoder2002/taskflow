@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { deleteUserStory } from "../../app/actions/user-stories";
+import { StoryPointPicker } from "./StoryPointPicker";
 
 type UserStory = {
 	id: string;
@@ -30,6 +31,7 @@ export function UserStoryCard({
 }) {
 	const [isDeleting, setIsDeleting] = useState(false);
 	const [isExpanded, setIsExpanded] = useState(false);
+	const [showEstimation, setShowEstimation] = useState(false);
 
 	async function handleDelete() {
 		if (!confirm("Êtes-vous sûr de vouloir supprimer cette user story ?")) {
@@ -54,16 +56,31 @@ export function UserStoryCard({
 					{story.title}
 				</h3>
 				<div className="flex items-center gap-2 ml-4">
-					{story.storyPoints && (
-						<span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-800 text-sm font-semibold">
-              {story.storyPoints}
-            </span>
-					)}
-					{!story.storyPoints && (
-						<span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">
-              Non estimé
-            </span>
-					)}
+					{story.storyPoints && story.storyPoints > 0 ? (
+						<button
+							onClick={() => setShowEstimation(true)}
+							className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-800 text-sm font-semibold hover:bg-blue-200 transition-colors"
+							title="Modifier l'estimation"
+						>
+							{story.storyPoints}
+						</button>
+					) : story.storyPoints === -1 ? (
+						<button
+							onClick={() => setShowEstimation(true)}
+							className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-orange-100 text-orange-800 text-sm font-semibold hover:bg-orange-200 transition-colors"
+							title="Story trop grosse - Cliquer pour réestimer"
+						>
+							☕
+						</button>
+					) : story.storyPoints === null ? (
+						<button
+							onClick={() => setShowEstimation(true)}
+							className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors"
+							title="Cliquer pour estimer"
+						>
+							Non estimé
+						</button>
+					) : null}
 				</div>
 			</div>
 
@@ -154,6 +171,15 @@ export function UserStoryCard({
 					</button>
 				</div>
 			</div>
+
+			{/* Story Point Picker Modal */}
+			{showEstimation && (
+				<StoryPointPicker
+					storyId={story.id}
+					currentPoints={story.storyPoints}
+					onClose={() => setShowEstimation(false)}
+				/>
+			)}
 		</div>
 	);
 }
