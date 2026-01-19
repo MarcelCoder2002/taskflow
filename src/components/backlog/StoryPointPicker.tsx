@@ -36,7 +36,7 @@ export function StoryPointPicker({
 
 		setIsSaving(true);
 		try {
-			await updateUserStory(storyId, { storyPoints: selectedPoints });
+			await updateUserStory(storyId, { storyPoints: selectedPoints ?? undefined });
 			onClose();
 		} catch (error) {
 			console.error(error);

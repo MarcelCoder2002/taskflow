@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { UserStoryCard } from "../../../../../components/backlog/UserStoryCard";
-import { CreateUserStoryModal } from "../../../../../components/backlog/CreateUserStoryModal";
+import {useState} from "react";
+import {CreateUserStoryModal} from "../../../../../components/backlog/CreateUserStoryModal";
+import {SortableBacklog} from "../../../../../components/backlog/SortableBacklog";
 
 type UserStory = {
 	id: string;
@@ -36,7 +36,9 @@ export function BacklogClient({
 			<div className="bg-white shadow rounded-lg">
 				<div className="p-6">
 					<div className="flex items-center justify-between mb-6">
-						<h2 className="text-lg font-medium text-gray-900">User Stories</h2>
+						<h2 className="text-lg font-medium text-gray-900">
+							User Stories (ordre de priorité)
+						</h2>
 						<button
 							onClick={() => setShowCreateModal(true)}
 							className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
@@ -76,10 +78,11 @@ export function BacklogClient({
 							</div>
 						</div>
 					) : (
-						<div className="space-y-3">
-							{initialStories.map((story) => (
-								<UserStoryCard key={story.id} story={story} />
-							))}
+						<div className="pl-10">
+							<SortableBacklog
+								projectId={projectId}
+								initialStories={initialStories}
+							/>
 						</div>
 					)}
 				</div>
