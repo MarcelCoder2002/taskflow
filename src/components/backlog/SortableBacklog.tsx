@@ -17,7 +17,7 @@ import {
 	verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { SortableStoryCard } from "./SortableStoryCard";
-import { updateStoriesPriorities } from "@/app/actions/user-stories";
+import { updateStoriesPriorities } from "../../app/actions/user-stories";
 
 type UserStory = {
 	id: string;
