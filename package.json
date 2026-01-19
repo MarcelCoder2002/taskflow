@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:unit": "vitest --project=unit --passWithNoTests",
-    "test:browser": "vitest --project=browser --passWithNoTests",
-    "test:e2e": "playwright test"
+    "test:unit": "vitest --project=unit --pass-with-no-tests",
+    "test:browser": "vitest --project=browser --pass-with-no-tests",
+    "test:e2e": "playwright test --pass-with-no-tests"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
