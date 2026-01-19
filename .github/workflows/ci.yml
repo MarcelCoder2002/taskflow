@@ -26,7 +26,7 @@ jobs:
       - name: Init Zenstack
         run: pnpm --package=@zenstackhq/cli dlx zen init
       - name: Generate Zenstack Client
-        run: pnpx zenstack generate --schema zenstack/schema.zmodel
+        run: pnpx @zenstackhq/cli@latest zenstack generate
       - name: Run ESLint
         run: npm run lint
       - name: Type check
@@ -61,7 +61,7 @@ jobs:
       - name: Init Zenstack
         run: pnpm --package=@zenstackhq/cli dlx zen init
       - name: Generate Zenstack Client
-        run: pnpx zenstack generate --schema zenstack/schema.zmodel
+        run: pnpx @zenstackhq/cli@latest zenstack generate
       - name: Run migrations
         run: pnpx zenstack migrate deploy
       - name: Run unit tests
@@ -101,7 +101,7 @@ jobs:
       - name: Init Zenstack
         run: pnpm --package=@zenstackhq/cli dlx zen init
       - name: Generate Zenstack Client
-        run: pnpx zenstack generate --schema zenstack/schema.zmodel
+        run: pnpx @zenstackhq/cli@latest zenstack generate
       - name: Run migrations
         run: pnpx zenstack migrate deploy
       - name: Run unit tests
@@ -139,7 +139,7 @@ jobs:
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
       - name: Generate Zenstack Client
-        run: pnpx zenstack generate --schema zenstack/schema.zmodel
+        run: pnpx @zenstackhq/cli@latest zenstack generate
       - name: Run migrations
         run: pnpx zenstack migrate deploy
       - name: Run e2e tests
@@ -165,7 +165,7 @@ jobs:
       - name: Init Zenstack
         run: pnpm --package=@zenstackhq/cli dlx zen init
       - name: Generate Zenstack Client
-        run: pnpx zenstack generate --schema zenstack/schema.zmodel
+        run: pnpx @zenstackhq/cli@latest zenstack generate
       - name: Build
         run: npm run build
       - name: Check build size
