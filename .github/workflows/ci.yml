@@ -63,7 +63,7 @@ jobs:
       - name: Run migrations
         run: pnpm --package=@zenstackhq/cli dlx zen migrate deploy
       - name: Run unit tests
-        run: npm run test:unit
+        run: pnpm test:unit
       - name: Upload coverage
         uses: codecov/codecov-action@v3
         if: always()
@@ -102,7 +102,7 @@ jobs:
       - name: Run migrations
         run: pnpm --package=@zenstackhq/cli dlx zen migrate deploy
       - name: Run unit tests
-        run: npm run test:browser
+        run: pnpm test:browser
 
   e2e:
     timeout-minutes: 60
@@ -139,7 +139,7 @@ jobs:
       - name: Run migrations
         run: pnpm --package=@zenstackhq/cli dlx zen migrate deploy
       - name: Run e2e tests
-        run: pnpm exec test:e2e
+        run: pnpm test:e2e
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:

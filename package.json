@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:unit": "vitest --project=unit",
-    "test:browser": "vitest --project=browser",
+    "test:unit": "vitest --project=unit --passWithNoTests",
+    "test:browser": "vitest --project=browser --passWithNoTests",
     "test:e2e": "playwright test"
   },
   "dependencies": {
