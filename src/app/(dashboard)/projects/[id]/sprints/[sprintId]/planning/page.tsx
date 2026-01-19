@@ -3,6 +3,7 @@ import { getUserStories } from "../../../../../../../app/actions/user-stories";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { SprintPlanningClient } from "./SprintPlanningClient";
+import { getProjectVelocity } from "../../../../../../../app/actions/metrics";
 
 export default async function SprintPlanningPage({
 	                                                 params,
@@ -11,13 +12,15 @@ export default async function SprintPlanningPage({
 }) {
 	let sprint;
 	let backlogStories;
-
+	let velocity;
+	
 	const { id, sprintId } = await params;
 
 	try {
-		[sprint, backlogStories] = await Promise.all([
+		[sprint, backlogStories, velocity] = await Promise.all([
 			getSprint(sprintId),
 			getUserStories(id),
+			getProjectVelocity(id),
 		]);
 	} catch (error) {
 		notFound();
@@ -29,8 +32,8 @@ export default async function SprintPlanningPage({
 		0
 	);
 
-	// Calculate average velocity (mock for now - will implement later)
-	const averageVelocity = 12; // Hardcoded for MVP
+	// Use actual average velocity
+	const averageVelocity = velocity.averageVelocity || 12; // Fallback to 12
 
 	return (
 		<div className="min-h-screen bg-gray-50">
