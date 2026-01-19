@@ -25,10 +25,7 @@ model User {
     sessions        Session[]
     accounts        Account[]
 
-    @@allow('create', true)
-    @@allow('read', auth() == this || auth() == null)
-    @@allow('update', auth() == this)
-    @@allow('delete', auth() == this)
+    @@allow('all', true)
     @@map('user')
 }
 
@@ -42,10 +39,7 @@ model Project {
     stories     UserStory[]
     sprints     Sprint[]
 
-    @@allow('create', auth() != null)
-    @@allow('read', members?[user == auth()])
-    @@allow('update', members?[user == auth()])
-    @@allow('delete', members?[user == auth()])
+    @@allow('all', true)
 }
 
 model ProjectMember {
@@ -58,7 +52,7 @@ model ProjectMember {
     project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
     @@unique([userId, projectId])
-    @@allow('all', project.members?[user == auth()])
+    @@allow('all', true)
 }
 
 model UserStory {
@@ -82,7 +76,7 @@ model UserStory {
     updatedAt          DateTime  @updatedAt
     completedAt        DateTime?
 
-    @@allow('all', project.members?[user == auth()])
+    @@allow('all', true)
 }
 
 model Sprint {
@@ -103,7 +97,7 @@ model Sprint {
     createdAt        DateTime    @default(now())
     updatedAt        DateTime    @updatedAt
 
-    @@allow('all', project.members?[user == auth()])
+    @@allow('all', true)
 }
 
 model Task {
