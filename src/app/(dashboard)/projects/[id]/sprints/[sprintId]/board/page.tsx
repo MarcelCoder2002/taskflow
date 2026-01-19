@@ -57,6 +57,13 @@ export default async function KanbanBoardPage({
 								<p className="text-xs text-gray-500">Story Points</p>
 							</div>
 
+							<Link
+								href={`/projects/${id}/sprints/${sprintId}/metrics`}
+								className="inline-flex items-center px-3 py-1.5 border border-gray-300 text-sm font-medium rounded text-gray-700 bg-white hover:bg-gray-50"
+							>
+								📊 Métriques
+							</Link>
+
 							{sprint.status === "ACTIVE" && (
 								<span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
                   ● Sprint Actif
