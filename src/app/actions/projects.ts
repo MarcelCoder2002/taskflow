@@ -13,7 +13,7 @@ const createProjectSchema = z.object({
 	description: z.string().optional(),
 });
 
-export async function createProject(formData: FormData) {
+export async function createProject(previousState: unknown, formData: FormData) {
 	// Auth check
 	const session = await auth.api.getSession({
 		headers: await headers(),
@@ -52,7 +52,7 @@ export async function createProject(formData: FormData) {
 			},
 		});
 
-		revalidatePath("/dashboard");
+		revalidatePath("/");
 		redirect(`/projects/${project.id}`);
 	} catch (error) {
 		console.error("Error creating project:", error);
