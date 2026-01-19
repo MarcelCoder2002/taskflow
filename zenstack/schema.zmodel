@@ -26,7 +26,7 @@ model User {
     accounts        Account[]
 
     @@allow('create', true)
-    @@allow('read', auth() == this)
+    @@allow('read', auth() == this || auth() == null)
     @@allow('update', auth() == this)
     @@allow('delete', auth() == this)
     @@map('user')
@@ -133,6 +133,7 @@ model Session {
     user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@map('session')
+    @@allow('all', true)
 }
 
 model Account {
@@ -152,6 +153,7 @@ model Account {
     updatedAt             DateTime  @updatedAt
 
     @@map('account')
+    @@allow('all', true)
 }
 
 model Verification {
@@ -163,4 +165,5 @@ model Verification {
     updatedAt  DateTime @default(now()) @updatedAt
 
     @@map('verification')
+    @@allow('all', true)
 }

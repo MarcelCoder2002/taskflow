@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { authClient } from "../../../lib/auth-client";
 
 export default function RegisterPage() {
 	const router = useRouter();
@@ -20,16 +21,14 @@ export default function RegisterPage() {
 		const name = formData.get("name") as string;
 
 		try {
-			const res = await fetch("/api/auth/sign-up", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ email, password, name }),
+			const {error} = await authClient.signUp.email({
+				email,
+				password,
+				name,
 			});
 
-			const data = await res.json();
-
-			if (!res.ok) {
-				throw new Error(data.message || "Erreur lors de l'inscription");
+			if (error) {
+				throw new Error(error.message || "Erreur lors de l'inscription");
 			}
 
 			// Redirect to login
