@@ -23,6 +23,8 @@ jobs:
           node-version: lts/*
       - name: Install dependencies
         run: npm install -g pnpm && pnpm install
+      - name: Init Zenstack
+        run: pnpm --package=@zenstackhq/cli dlx zen init
       - name: Generate Zenstack Client
         run: pnpx zenstack generate
       - name: Run ESLint
@@ -56,6 +58,8 @@ jobs:
           node-version: lts/*
       - name: Install dependencies
         run: npm install -g pnpm && pnpm install
+      - name: Init Zenstack
+        run: pnpm --package=@zenstackhq/cli dlx zen init
       - name: Generate Zenstack Client
         run: pnpx zenstack generate
       - name: Run migrations
@@ -94,6 +98,8 @@ jobs:
           node-version: lts/*
       - name: Install dependencies
         run: npm install -g pnpm && pnpm install
+      - name: Init Zenstack
+        run: pnpm --package=@zenstackhq/cli dlx zen init
       - name: Generate Zenstack Client
         run: pnpx zenstack generate
       - name: Run migrations
@@ -128,6 +134,8 @@ jobs:
           node-version: lts/*
       - name: Install dependencies
         run: npm install -g pnpm && pnpm install
+      - name: Init Zenstack
+        run: pnpm --package=@zenstackhq/cli dlx zen init
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
       - name: Generate Zenstack Client
@@ -154,6 +162,8 @@ jobs:
           node-version: lts/*
       - name: Install dependencies
         run: npm install -g pnpm && pnpm install
+      - name: Init Zenstack
+        run: pnpm --package=@zenstackhq/cli dlx zen init
       - name: Generate Zenstack Client
         run: pnpx zenstack generate
       - name: Build
