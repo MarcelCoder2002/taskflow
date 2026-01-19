@@ -8,7 +8,7 @@ export default async function ProjectPage({
 	params: Promise<{ id: string }>;
 }) {
 	let project;
-
+	
 	const { id } = await params;
 
 	try {
@@ -147,6 +147,17 @@ export default async function ProjectPage({
 								</h2>
 								<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 									<Link
+										href={`/projects/${project.id}/overview`}
+										className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-500 hover:bg-blue-50 transition-colors"
+									>
+										<h3 className="text-sm font-medium text-gray-900">
+											📊 Vue d&#39;ensemble
+										</h3>
+										<p className="mt-1 text-xs text-gray-500">
+											Métriques et vélocité
+										</p>
+									</Link>
+									<Link
 										href={`/projects/${project.id}/backlog`}
 										className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-500 hover:bg-blue-50 transition-colors"
 									>
@@ -168,17 +179,7 @@ export default async function ProjectPage({
 											Planifier et suivre
 										</p>
 									</Link>
-									<div
-										className="border-2 border-dashed border-gray-200 rounded-lg p-6 text-center opacity-50 cursor-not-allowed">
-										<h3 className="text-sm font-medium text-gray-500">
-											📊 Metrics
-										</h3>
-										<p className="mt-1 text-xs text-gray-400">
-											Bientôt disponible
-										</p>
-									</div>
-									<div
-										className="border-2 border-dashed border-gray-200 rounded-lg p-6 text-center opacity-50 cursor-not-allowed">
+									<div className="border-2 border-dashed border-gray-200 rounded-lg p-6 text-center opacity-50 cursor-not-allowed">
 										<h3 className="text-sm font-medium text-gray-500">
 											⚙️ Paramètres
 										</h3>
@@ -207,8 +208,7 @@ export default async function ProjectPage({
 													{member.user.email}
 												</p>
 											</div>
-											<span
-												className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+											<span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                         {member.role}
                       </span>
 										</li>
