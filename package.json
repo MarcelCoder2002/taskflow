@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint",
     "test:unit": "vitest --project=unit",
     "test:browser": "vitest --project=browser",
     "test:e2e": "playwright test"

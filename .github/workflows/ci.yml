@@ -61,7 +61,7 @@ jobs:
       - name: Generate Zenstack Client
         run: pnpm --package=@zenstackhq/cli dlx zen generate
       - name: Run migrations
-        run: pnpx zenstack migrate deploy
+        run: pnpm --package=@zenstackhq/cli dlx zen migrate deploy
       - name: Run unit tests
         run: npm run test:unit
       - name: Upload coverage
@@ -100,7 +100,7 @@ jobs:
       - name: Generate Zenstack Client
         run: pnpm --package=@zenstackhq/cli dlx zen generate
       - name: Run migrations
-        run: pnpx zenstack migrate deploy
+        run: pnpm --package=@zenstackhq/cli dlx zen migrate deploy
       - name: Run unit tests
         run: npm run test:browser
 
@@ -137,7 +137,7 @@ jobs:
       - name: Generate Zenstack Client
         run: pnpm --package=@zenstackhq/cli dlx zen generate
       - name: Run migrations
-        run: pnpx zenstack migrate deploy
+        run: pnpm --package=@zenstackhq/cli dlx zen migrate deploy
       - name: Run e2e tests
         run: pnpm exec test:e2e
       - uses: actions/upload-artifact@v4
