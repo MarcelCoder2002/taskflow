@@ -220,3 +220,45 @@ export async function deleteUserStory(storyId: string) {
 	revalidatePath(`/projects/${story.projectId}/backlog`);
 	return { success: true };
 }
+
+export async function updateStoriesPriorities(
+	projectId: string,
+	storyIds: string[]
+) {
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	});
+
+	if (!session) {
+		throw new Error("Non authentifié");
+	}
+
+	// Verify access to project
+	const project = await db.project.findFirst({
+		where: {
+			id: projectId,
+			members: {
+				some: {
+					userId: session.user.id,
+				},
+			},
+		},
+	});
+
+	if (!project) {
+		throw new Error("Projet non trouvé");
+	}
+
+	// Update priorities based on order
+	await db.$transaction(
+		storyIds.map((storyId, index) =>
+			db.userStory.update({
+				where: { id: storyId },
+				data: { priority: index + 1 },
+			})
+		)
+	);
+
+	revalidatePath(`/projects/${projectId}/backlog`);
+	return { success: true };
+}
