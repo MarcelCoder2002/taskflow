@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import {useActionState, useEffect} from "react";
 import { useFormStatus } from "react-dom";
 import { createUserStory } from "../../app/actions/user-stories";
 
@@ -26,10 +26,11 @@ export function CreateUserStoryModal({
 }) {
 	const [state, formAction] = useActionState(createUserStory, null);
 
-	// Close on success
-	if (state?.success) {
-		onClose();
-	}
+	useEffect(() => {
+		if (state?.success) {
+			onClose();
+		}
+	}, [state?.success, onClose]);
 
 	return (
 		<div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 p-4">

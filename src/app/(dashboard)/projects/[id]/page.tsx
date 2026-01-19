@@ -5,12 +5,14 @@ import {notFound} from "next/navigation";
 export default async function ProjectPage({
 	                                          params,
                                           }: {
-	params: { id: string };
+	params: Promise<{ id: string }>;
 }) {
 	let project;
 
+	const { id } = await params;
+
 	try {
-		project = await getProject(params.id);
+		project = await getProject(id);
 	} catch (error) {
 		notFound();
 	}
